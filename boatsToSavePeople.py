@@ -1,5 +1,5 @@
 def numRescueBoats(people, limit):
-    people.sort()  # O(N)
+    people.sort()  # O(n Log(N))
     print(people)
     left = 0
     right = len(people) - 1
