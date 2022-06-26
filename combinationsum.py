@@ -15,3 +15,9 @@ class Solution(object):
                 self.solution(candidates, ans, cur, target, i, sum + candidates[i])
                 cur.pop()
         return
+
+
+s = Solution()
+nums = [1, 2, 3]
+val = s.combinationSum(nums,4)
+print(val)

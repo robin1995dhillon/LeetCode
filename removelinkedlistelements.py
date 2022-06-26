@@ -17,6 +17,7 @@ class Solution(object):
             else:
                 target_node = temp.next
                 temp.next = target_node.next
+                target_node.next = None
         return head.next
 
 

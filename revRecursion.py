@@ -1,11 +1,10 @@
-def allPerm(n):
-    if (len(n)<=1):
+def rev(n):
+    if (len(n) <= 0):
         return n
-    i = len(n) - 1
-    pointer = len(n) - 2
-    while(n[pointer``])
+    else:
+        return rev(n[1:]) + n[0]
 
 
-
-nums = [1,2,3]
-val = allPerm(nums)
+name = "abcde"
+val = rev(name)
+print(val)

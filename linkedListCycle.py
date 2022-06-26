@@ -25,7 +25,7 @@ node_1.next = node_5
 node_5.next = node_11
 node_11.next = node_8
 node_8.next = node_9
-# node_9.next = node_5
+node_9.next = node_5
 
 answer = sol.hasCycle(node_1)
 print(answer)

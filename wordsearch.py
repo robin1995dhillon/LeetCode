@@ -1,34 +1,34 @@
 class Solution(object):
-    dx = [0, 0, -1, 1]
-    dy = [1, -1, 0, 0]
 
     def exist(self, board, word):
         if (len(word) == 0):
             return True
-        n = len(board)
-        for i in range(n):
-            m = len(board[i])
-            for j in range(m):
-                if (word[0] == board[i][j] and self.solution(board, word, i, j, "")):
-                    return True
-        return False
+        rows = len(board)
+        columns = len(board[0])
+        path = set()
 
-    def solution(self, board, word, x, y, curString):
-        if (x < 0 or x >= len(board) or y < 0 or y >= len(board[x] or board[x][y] == ' ')):
-            return False
-        curString += board[x][y]
-        if (len(curString) > len(word)):
-            return False
-        if (curString[len(curString) - 1] != word[len(curString) - 1]):
-            return False
-        if (curString == word):
-            return True
-
-        temp = board[x][y]
-        board[x][y] = ' '
-        for i in range(4):
-            if (self.solution(board, word, x + self.dx[i], y + self.dy[i], curString)):
+        def dfs(r, c, i):
+            if i == len(word):
                 return True
+            if (r < 0 or c < 0 or r >= rows or c >= columns or word[i] != board[r][c] or (r, c) in path):
+                return False
+            path.add((r, c))
+            res = (dfs(r + 1, c, i + 1) or
+                   dfs(r - 1, c, i + 1) or
+                   dfs(r, c + 1, i + 1) or
+                   dfs(r, c - 1, i + 1))
+            path.remove((r, c))
+            return res
 
-        board[x][y] = temp
+        for r in range(rows):
+            for c in range(columns):
+                if dfs(r, c, 0): return True
         return False
+
+
+s = Solution()
+board = [["A", "A", "A", "A", "A", "A"], ["A", "A", "A", "A", "A", "A"], ["A", "A", "A", "A", "A", "A"],
+         ["A", "A", "A", "A", "A", "A"], ["A", "A", "A", "A", "A", "B"], ["A", "A", "A", "A", "B", "A"]]
+word = "AAAAAAAAAAAAABB"
+value = s.exist(board, word)
+print(value)
